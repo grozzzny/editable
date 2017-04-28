@@ -16,3 +16,7 @@ Run migrations
 ```bash
 php yii migrate --migrationPath=@vendor/grozzzny/editable/migrations
 ```
+```php
+<!-- Модуль: вставка кода -->
+<? foreach (Editable::findAll(['status' => Editable::STATUS_ON]) as $editable) echo $editable->code.PHP_EOL; ?>
+```
