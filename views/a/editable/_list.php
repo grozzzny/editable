@@ -1,7 +1,7 @@
 <?
 use yii\helpers\Url;
 use yii\helpers\Html;
-use grozzzny\call_back\models\Base;
+use grozzzny\editable\models\Base;
 
 $module = $this->context->module->id;
 
@@ -14,9 +14,6 @@ $sort = $data->getSort();
             <?=$sort->link('id');?>
         </th>
         <th><?=$sort->link('name');?></th>
-        <th><?=$sort->link('phone');?></th>
-        <th><?=$sort->link('email');?></th>
-        <th><?=$sort->link('datetime',['label' => 'Дата и время']);?></th>
         <th width="100"><?=$sort->link('status');?></th>
         <th width="<?= $current_model::SHOW_ORDER_NUM ? '120' : '40'?>"></th>
     </tr>
@@ -27,17 +24,8 @@ $sort = $data->getSort();
         <td><?= $item->primaryKey ?></td>
         <td>
             <a href="<?= Url::to(['/admin/'.$module.'/a/edit', 'id' => $item->id, 'alias' => $item::ALIAS]) ?>">
-                <?= $item->getName() ?>
+                <?= $item->name ?>
             </a>
-        </td>
-        <td>
-            <?= $item->phone ?>
-        </td>
-        <td>
-            <?= $item->email ?>
-        </td>
-        <td>
-            <?=date('d.m.Y H:i',$item->datetime)?>
         </td>
         <td class="status vtop">
             <?= Html::checkbox('', $item->status == Base::STATUS_ON, [

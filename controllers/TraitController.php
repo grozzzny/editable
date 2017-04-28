@@ -1,7 +1,7 @@
 <?php
 
 
-namespace grozzzny\call_back\controllers;
+namespace grozzzny\editable\controllers;
 
 
 use yii\easyii\helpers\Image;

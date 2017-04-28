@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use grozzzny\widgets\switch_checkbox\SwitchCheckbox;
-use yii\easyii\widgets\DateTimePicker;
+use bl\ace\AceWidget;
 
 $module = $this->context->module->id;
 ?>
@@ -14,13 +14,12 @@ $module = $this->context->module->id;
 
 
 <?= $form->field($current_model, 'name') ?>
-<?= $form->field($current_model, 'email') ?>
-<?= $form->field($current_model, 'phone') ?>
-<?= $form->field($current_model, 'ip') ?>
 
-<?= $form->field($current_model, 'description')->textarea() ?>
-
-<?= $form->field($current_model, 'datetime')->widget(DateTimePicker::className()); ?>
+<?= $form->field($current_model, 'code')->widget(AceWidget::className(), [
+    'language' => 'html',
+    'attributes' => ['style' => 'width: 100%;min-height: 400px;']
+]);
+?>
 
 <?=SwitchCheckbox::widget([
     'model' => $current_model,
