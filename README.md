@@ -1,0 +1,2 @@
+# editable
+Editable for EasyiiCMS
