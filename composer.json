@@ -3,6 +3,7 @@
     "description": "Editable for EasyiiCMS",
     "keywords": ["yii", "easyiiCMS", "CMS", "module"],
     "type": "yii2-extension",
+    "minimum-stability": "dev",
     "license": "MIT",
     "authors": [
         {
