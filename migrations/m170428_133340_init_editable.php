@@ -1,8 +1,10 @@
 <?php
 
-class m170428_133340_init_editable extends \grozzzny\editable\migrations\Migration
+class m170428_133340_init_editable extends \yii\db\Migration
 {
-    public function safeUp()
+    public $engine = 'ENGINE=MyISAM DEFAULT CHARSET=utf8';
+
+    public function up()
     {
         $this->createTable('gr_editable', [
             'id' => $this->primaryKey(),
@@ -10,43 +12,16 @@ class m170428_133340_init_editable extends \grozzzny\editable\migrations\Migrati
             'code' => $this->text(),
             'status' => $this->boolean()->defaultValue(1),
             'order_num' => $this->integer()->notNull(),
-        ], $this->tableOptions);
-
-
-        $this->insert('easyii_modules', [
-            'name' => 'editable',
-            'class' => 'grozzzny\editable\Module',
-            'title' => 'Editable',
-            'icon' => 'font',
-            'status' => 1,
-            'settings' => '[]',
-            'notice' => 0,
-            'order_num' => 120
-        ]);
+        ], $this->engine);
     }
 
-    public function safeDown()
+    public function down()
     {
         $this->dropTable('gr_editable');
-        $this->delete('easyii_modules',['name' => 'editable']);
 
         echo "m170428_133340_init_editable cannot be reverted.\n";
 
         return false;
     }
 
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m170415_185424_create_table_call_back cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

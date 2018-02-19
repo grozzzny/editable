@@ -1,17 +1,28 @@
 <?php
 namespace grozzzny\editable\models;
 
-class Editable extends Base
+use Yii;
+use yii\data\BaseDataProvider;
+use yii\easyii2\components\ActiveQuery;
+use yii\easyii2\components\FastModel;
+use yii\easyii2\components\FastModelInterface;
+
+/**
+ * Class Editable
+ * @package grozzzny\editable\models
+ *
+ * @property int $id [int(11)]
+ * @property string $name [varchar(255)]
+ * @property string $code
+ * @property bool $status [tinyint(1)]
+ * @property int $order_num [int(11)]
+ */
+class Editable extends FastModel implements FastModelInterface
 {
-    const CACHE_KEY = 'gr_editable';
-
-    const TITLE = 'Вставка кода';
-    const ALIAS = 'editable';
-
-    const SUBMENU_PHOTOS = false;
-    const SUBMENU_FILES = false;
-    const SHOW_ORDER_NUM = true;
     const PRIMARY_MODEL = true;
+
+    const CACHE_KEY = 'Editable';
+    const ORDER_NUM = false;
 
     public static function tableName()
     {
@@ -43,32 +54,38 @@ class Editable extends Base
         ];
     }
 
-    public static function queryFilter(&$query, $get)
+    public static function getNameModel()
+    {
+        // TODO: Implement getNameModel() method.
+        return Yii::t('app', 'Editable');
+    }
+
+    public static function getSlugModel()
+    {
+        // TODO: Implement getNameModel() method.
+        return 'editable';
+    }
+
+
+    public static function queryFilter(ActiveQuery &$query, $get)
     {
         if(!empty($get['text'])){
             $query->andFilterWhere(['LIKE', 'name', $get['text']]);
         }
     }
 
-    public static function querySort(&$provider)
+    public static function querySort(BaseDataProvider &$provider)
     {
-        $sort = [];
-
-        $attributes = [
-            'id',
-            'name',
-            'status',
-            'order_num'
-        ];
-
-        if(self::SHOW_ORDER_NUM){
-            $sort = $sort + ['defaultOrder' => ['order_num' => SORT_DESC]];
-            $attributes = $attributes + ['order_num'];
-        }
-
-        $sort = $sort + ['attributes' => $attributes];
-
-        $provider->setSort($sort);
+        $provider->setSort([
+            'defaultOrder' => [
+                'id' => SORT_DESC
+            ],
+            'attributes' => [
+                'id',
+                'name',
+                'status',
+            ]
+        ]);
     }
 
 }
