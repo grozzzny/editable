@@ -15,7 +15,7 @@
     "require": {
         "php": ">=5.4.0",
         "grozzzny/widgets": "dev-master",
-        "black-lamp/yii2-text-editor": "dev-master",
+        "black-lamp/yii2-text-editor": "2.0.0",
         "yiisoft/yii2": "*"
     },
     "autoload": {
