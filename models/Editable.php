@@ -21,7 +21,7 @@ class Editable extends FastModel implements FastModelInterface
 {
     const PRIMARY_MODEL = true;
 
-    const CACHE_KEY = 'Editable';
+    const CACHE_KEY = 'editable';
     const ORDER_NUM = false;
 
     public static function tableName()
@@ -47,17 +47,17 @@ class Editable extends FastModel implements FastModelInterface
     {
         return [
             'id' => 'ID',
-            'name' => 'Имя',
-            'code' => 'Код',
-            'order_num' => 'Индекс сортировки',
-            'status' => 'Состояние',
+            'name' => Yii::t('app/editable', 'Name'),
+            'code' => Yii::t('app/editable', 'Code'),
+            'order_num' => Yii::t('app/editable', 'Index sort'),
+            'status' => Yii::t('app/editable', 'Status'),
         ];
     }
 
     public static function getNameModel()
     {
         // TODO: Implement getNameModel() method.
-        return Yii::t('app', 'Editable');
+        return Yii::t('app/editable', 'Editable');
     }
 
     public static function getSlugModel()
